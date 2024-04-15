@@ -33,7 +33,7 @@ private val retrofit = Retrofit.Builder()
 
 interface DrugService {
 
-    @GET("getDrbEasyDrugLista")
+    @GET("getDrbEasyDrugList")
     suspend fun getDrugList(
         @Query("serviceKey") serviceKey : String,
         @Query("itemName") itemName : String,
