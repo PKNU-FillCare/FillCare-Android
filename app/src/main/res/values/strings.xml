@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FillCare</string>
+    <string name="BASE_URL">http://apis.data.go.kr/1471000/DrbEasyDrugInfoService</string>
+</resources>
