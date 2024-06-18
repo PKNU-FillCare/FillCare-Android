@@ -5,6 +5,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
+import com.example.fillcare.data.model.Drug
 import com.example.fillcare.data.model.DrugItem
 import com.example.fillcare.databinding.ActivitySearchBinding
 
@@ -21,7 +22,7 @@ class SearchActivity : AppCompatActivity() {
         setContentView(view)
 
         //viewModel.searchDrugInfo(itemName = "타이레놀")
-        val searchObserver = Observer<List<DrugItem>> {
+        val searchObserver = Observer<List<Drug>> {
             binding.tvData.text= it.toString()
 
         }

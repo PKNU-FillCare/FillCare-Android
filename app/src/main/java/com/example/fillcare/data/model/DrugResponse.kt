@@ -38,4 +38,6 @@ data class DrugItem(
     val itemImage : String?,
     val bizrno : String?
 
-)
+) {
+    fun toDrug() : Drug = Drug(itemName = itemName, efficacy = efcyQesitm, useMethod = useMethodQesitm, warnBeforeTake = atpnWarnQesitm, warn = atpnQesitm, interaction = intrcQesitm, sideEffect = seQesitm,depositMethod=depositMethodQesitm)
+}
