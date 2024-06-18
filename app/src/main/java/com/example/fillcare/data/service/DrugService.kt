@@ -7,13 +7,20 @@ import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Response
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
-private const val BASE_URL = "http://apis.data.go.kr/1471000/DrbEasyDrugInfoService/"
+private const val BASE_URL = "https://apis.data.go.kr/1471000/DrbEasyDrugInfoService/"
 
-private val okhttpclient =OkHttpClient.Builder()
+
+val interceptor = HttpLoggingInterceptor()
+
+
+private val okhttpClient =OkHttpClient.Builder()
+    .addInterceptor(interceptor.setLevel(HttpLoggingInterceptor.Level.BODY))
     .connectTimeout(1,TimeUnit.MINUTES)
     .readTimeout(3,TimeUnit.SECONDS)
     .writeTimeout(3,TimeUnit.SECONDS)
@@ -26,8 +33,9 @@ val gson : Gson = GsonBuilder()
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create(gson))
     .baseUrl(BASE_URL)
-    .client(okhttpclient)
+    .client(okhttpClient)
     .build()
+
 
 
 
@@ -36,10 +44,12 @@ interface DrugService {
     @GET("getDrbEasyDrugList")
     suspend fun getDrugList(
         @Query("serviceKey") serviceKey : String,
-        @Query("itemName") itemName : String,
+        @Query("itemName") itemName : String ,
         @Query("type") type : String,
+        @Query("pageNo") pageNo : Int = 1,
+        @Query("numOfRows") numOfRows : Int = 3
 
-        ):Result<DrugResponse>
+        ): DrugResponse
 
 }
 

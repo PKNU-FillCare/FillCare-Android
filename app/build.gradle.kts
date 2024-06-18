@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
+
 }
 
 android {
@@ -15,6 +17,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildFeatures {
+        viewBinding= true
     }
 
     buildTypes {
@@ -46,6 +51,7 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation (libs.androidx.fragment.ktx)
     //retrofit
     implementation(libs.retrofit)
     implementation(libs.converter.scalars)
@@ -57,9 +63,11 @@ dependencies {
     implementation (libs.converter.gson)
     implementation(libs.okhttp.v4120)
 
+    //Timber
+    implementation(libs.timber)
 
-
-
+    //Log
+    implementation(libs.logging.interceptor)
 
 
 
